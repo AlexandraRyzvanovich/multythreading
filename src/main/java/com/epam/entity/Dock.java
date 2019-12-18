@@ -3,7 +3,7 @@ package com.epam.entity;
 public class Dock {
     private int id;
     private boolean loaded;
-    private boolean capacity;
+    private int capacity;
 
     public int getId() {
         return id;
@@ -21,20 +21,25 @@ public class Dock {
         this.loaded = loaded;
     }
 
-    public boolean isCapacity() {
+    public int isCapacity() {
         return capacity;
     }
 
-    public void setCapacity(boolean capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public void processShip(Ship ship){
-        if(ship.isLoaded()){
+    public void unloadShip(Ship ship){
             this.loaded = true;
             ship.setLoaded(false);
             System.out.println(ship.getShipName() + "was unloaded");
-        }else {
-        }
+
+    }
+
+    public void loadShip(Ship ship){
+            this.loaded = false;
+            ship.setLoaded(true);
+            System.out.println(ship.getShipName() + "was loaded");
+
     }
 }

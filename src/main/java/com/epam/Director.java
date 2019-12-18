@@ -1,6 +1,8 @@
 package com.epam;
 
+import com.epam.creator.DockCreator;
 import com.epam.creator.ShipsCreator;
+import com.epam.entity.Dock;
 import com.epam.entity.Port;
 import com.epam.entity.Ship;
 
@@ -16,8 +18,11 @@ public class Director {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         ShipsCreator creator = new ShipsCreator();
+        DockCreator dockCreator = new DockCreator();
         List<Ship> shipsQueue =  creator.create(SHIPS_JSON_FILE_PATH);
         AtomicReference<Port> port = Port.getInstance();
+        List<Dock> list = dockCreator.create("src/main/resources/docks");
+        port.get().addDocks(list);
 
         int shipsQuantity = shipsQueue.size();
         ExecutorService executorService = Executors.newFixedThreadPool(shipsQuantity);

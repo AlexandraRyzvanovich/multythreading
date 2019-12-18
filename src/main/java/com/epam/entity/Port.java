@@ -1,6 +1,7 @@
 package com.epam.entity;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicReference;
@@ -52,13 +53,7 @@ public class Port {
         return dock;
     }
 
-    public void returnDock(Dock dock) {
-        collectionLock.lock();
-        try{
-            this.listDocks.add(dock);
-        }finally {
-            collectionLock.unlock();
-            semaphore.release();
-        }
+    public void addDocks(List<Dock> docks){
+        listDocks.addAll(docks);
     }
 }

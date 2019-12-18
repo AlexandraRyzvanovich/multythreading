@@ -32,8 +32,13 @@ public class Ship implements Runnable{
         Dock dock = port.get().getDock();
         try {
             System.out.println("Trying to process ship");
-            if(isLoaded()) {
-                dock.processShip(this);
+            if(this.isLoaded() && !dock.isLoaded()) {
+                dock.unloadShip(this);
+                notify();
+            }else if(this.isLoaded() && dock.isLoaded()) {
+                this.wait();
+            }else if(!this.isLoaded() && dock.isLoaded()){
+                dock.loadShip(this);
                 notify();
             }else {
                 this.wait();
@@ -42,8 +47,6 @@ public class Ship implements Runnable{
         } catch (InterruptedException e) {
             LOGGER.error("Ship thread run failed", e.getCause());
 
-        } finally {
-            port.get().returnDock(dock);
         }
     }
 }
