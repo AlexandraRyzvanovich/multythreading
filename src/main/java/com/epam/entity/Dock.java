@@ -9,9 +9,6 @@ public class Dock {
             ship.setLoaded(false);
             System.out.println(ship.shipName + "was unloaded");
         }else {
-            this.loaded = false;
-            ship.setLoaded(true);
-            System.out.println(ship.shipName + "was loaded");
         }
     }
 }

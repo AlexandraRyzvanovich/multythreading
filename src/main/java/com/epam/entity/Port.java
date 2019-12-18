@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Port {
     private static final int POOL_SIZE = 10;
     private Semaphore semaphore = new Semaphore(POOL_SIZE);
-    private Queue<Dock> listDocks = new LinkedList<>();;
+    private Queue<Dock> listDocks = new LinkedList<>();
     private static final Lock instanceLock = new ReentrantLock();
     private static final Lock collectionLock = new ReentrantLock();
 

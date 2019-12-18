@@ -1,10 +1,14 @@
 package com.epam.entity;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.concurrent.atomic.AtomicReference;
 
-public class Ship implements Runnable {
-    String shipName;
-    boolean isLoaded;
+public class Ship implements Runnable{
+    private String shipName;
+    private boolean isLoaded;
+    private static final Logger LOGGER = LogManager.getLogger();;
 
     public String getShipName() {
         return shipName;
@@ -28,9 +32,17 @@ public class Ship implements Runnable {
         Dock dock = port.get().getDock();
         try {
             System.out.println("Trying to process ship");
-            dock.processShip(this);
+            if(isLoaded()) {
+                dock.processShip(this);
+                notify();
+            }else {
+                this.wait();
+            }
             System.out.println("ship is processed");
-        }finally {
+        } catch (InterruptedException e) {
+            LOGGER.error("Ship thread run failed", e.getCause());
+
+        } finally {
             port.get().returnDock(dock);
         }
     }
