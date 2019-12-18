@@ -31,7 +31,5 @@ public class Director {
         }
         executorService.awaitTermination(10, TimeUnit.SECONDS);
         executorService.shutdown();
-        System.out.println("All brought!");
-
     }
 }
