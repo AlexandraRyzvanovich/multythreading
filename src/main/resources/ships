@@ -1,0 +1,22 @@
+[
+  {
+    "shipName": "Ship1",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship2",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship3",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship4",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship5",
+    "isLoaded": true
+  }
+]
