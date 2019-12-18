@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "isLoaded": true,
+    "capacity": 20
+  },
+  {
+    "id": "2",
+    "isLoaded": true,
+    "capacity": 20
+  },
+  {
+    "id": "3",
+    "isLoaded": true,
+    "capacity": 20
+  },
+  {
+    "id": "4",
+    "isLoaded": true,
+    "capacity": 20
+  },
+  {
+    "id": "5",
+    "isLoaded": true,
+    "capacity": 20
+  }
+]

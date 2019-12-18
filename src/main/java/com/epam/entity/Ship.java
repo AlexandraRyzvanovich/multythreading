@@ -6,9 +6,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Ship implements Runnable{
+    private static final Logger LOGGER = LogManager.getLogger();
     private String shipName;
     private boolean isLoaded;
-    private static final Logger LOGGER = LogManager.getLogger();;
 
     public String getShipName() {
         return shipName;

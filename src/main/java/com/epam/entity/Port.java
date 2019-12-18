@@ -25,7 +25,7 @@ public class Port {
             AtomicReference<Port> temp;
             try{
                 if(port == null){
-                    temp = new AtomicReference<Port>(new Port());
+                    temp = new AtomicReference<>(new Port());
                     port = temp;
                 }
             }finally {
