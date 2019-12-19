@@ -36,11 +36,11 @@ public class Ship implements Runnable{
                 if (this.isLoaded && !dock.isLoaded()) {
                     dock.unloadShip(this);
                     isProcessed = true;
-                    LOGGER.debug("ship " + this.shipName + " is processed");
+                    LOGGER.debug(this.shipName + " is processed");
                 } else if (!this.isLoaded && dock.isLoaded()) {
                     dock.loadShip(this);
                     isProcessed = true;
-                    LOGGER.debug("ship " + this.shipName + " is processed");
+                    LOGGER.debug(this.shipName + " is processed");
                 } else {
                     LOGGER.debug(this.shipName + " is waiting for dock");
                 }
