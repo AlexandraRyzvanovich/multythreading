@@ -1,5 +1,6 @@
 package com.epam.entity;
 
+import com.epam.exception.ShipThreadException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,18 +31,20 @@ public class Ship implements Runnable{
         while (!isProcessed) {
             try {
                 dock = port.get().getDock();
-                LOGGER.info("Trying to process " + this.shipName);
+                LOGGER.debug("Trying to process " + this.shipName);
                 if (this.isLoaded && !dock.isLoaded()) {
                     dock.unloadShip(this);
                     isProcessed = true;
-                    LOGGER.info("ship " + this.shipName + " is processed");
+                    LOGGER.debug("ship " + this.shipName + " is processed");
                 } else if (!this.isLoaded && dock.isLoaded()) {
                     dock.loadShip(this);
                     isProcessed = true;
-                    LOGGER.info("ship " + this.shipName + " is processed");
+                    LOGGER.debug("ship " + this.shipName + " is processed");
                 } else {
-                    LOGGER.info(this.shipName + " is waiting for dock");
+                    LOGGER.debug(this.shipName + " is waiting for dock");
                 }
+            } catch (ShipThreadException e) {
+                LOGGER.error("While processing Ship thread exception occurred", e.getCause());
             } finally {
                 port.get().returnDock(dock);
             }

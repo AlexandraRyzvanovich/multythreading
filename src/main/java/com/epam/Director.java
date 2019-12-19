@@ -27,7 +27,7 @@ public class Director {
 
         int dockQuantity = listDocks.size();
         ExecutorService executorService = Executors.newFixedThreadPool(dockQuantity);
-        for(int i = 0; i < shipsQueue.size() ; i++) {
+        for(int i = 0; i < shipsQueue.size() -1 ; i++) {
             executorService.submit(shipsQueue.get(i));
         }
         executorService.shutdown();

@@ -26,5 +26,45 @@
   {
     "shipName": "Ship7",
     "isLoaded": true
-  }
+  },
+  {
+    "shipName": "Ship8",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship9",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship10",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship11",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship12",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship13",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship14",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship15",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship16",
+    "isLoaded": true
+  },
+  {
+    "shipName": "Ship17",
+    "isLoaded": true
+  },
 ]

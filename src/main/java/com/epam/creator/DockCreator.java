@@ -18,12 +18,9 @@ public class DockCreator {
     public List<Dock> create(String filePath) throws CreatorException {
         try {
             Gson gson = new Gson();
-            Type shipType = new TypeToken<Collection<Dock>>() {
-            }.getType();
+            Type shipType = new TypeToken<Collection<Dock>>() {}.getType();
             Collection<Dock> docksArray = gson.fromJson(new FileReader(filePath), shipType);
-            for (Dock dock : docksArray) {
-                docks.add(dock);
-            }
+            docks.addAll(docksArray);
         } catch (FileNotFoundException e) {
             throw new CreatorException("File path not found", e.getCause());
         }

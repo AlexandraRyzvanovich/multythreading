@@ -1,5 +1,7 @@
 package com.epam.entity;
 
+import com.epam.exception.ShipThreadException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -36,9 +38,13 @@ public class Port {
         return port;
     }
 
-    public Dock getDock() {
+    public Dock getDock() throws ShipThreadException {
         Dock dock;
-        semaphore.tryAcquire();
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            throw new ShipThreadException("While getting a dock exception occured", e.getCause());
+        }
         collectionLock.lock();
         try {
             dock = listDocks.poll();
@@ -55,7 +61,6 @@ public class Port {
             this.listDocks.add(dock);
         } finally {
             collectionLock.unlock();
-            semaphore.release();
         }
     }
 
