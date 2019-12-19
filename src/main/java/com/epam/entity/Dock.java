@@ -8,12 +8,10 @@ public class Dock {
     private static final Logger LOGGER = LogManager.getLogger();
     private final int id;
     private boolean loaded;
-    private int capacity;
 
-    public Dock(int id, boolean loaded, int capacity) {
+    public Dock(int id, boolean loaded) {
         this.id = id;
         this.loaded = loaded;
-        this.capacity = capacity;
     }
 
     public boolean isLoaded() {

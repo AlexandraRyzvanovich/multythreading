@@ -1,27 +1,22 @@
 [
   {
     "id": "1",
-    "isLoaded": false,
-    "capacity": 20
+    "isLoaded": false
   },
   {
     "id": "2",
-    "isLoaded": true,
-    "capacity": 20
+    "isLoaded": true
   },
   {
     "id": "3",
-    "isLoaded": true,
-    "capacity": 20
+    "isLoaded": true
   },
   {
     "id": "4",
-    "isLoaded": false,
-    "capacity": 20
+    "isLoaded": false
   },
   {
     "id": "5",
-    "isLoaded": false,
-    "capacity": 20
+    "isLoaded": false
   }
 ]

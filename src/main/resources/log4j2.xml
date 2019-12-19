@@ -25,6 +25,11 @@
             <AppenderRef ref="STDOUT" />
             <AppenderRef ref="rollingFile" />
         </Root>
+        <Root level="DEBUG">
+            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="rollingFile" />
+        </Root>
+
     </Loggers>
 
 </Configuration>

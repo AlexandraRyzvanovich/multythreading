@@ -12,8 +12,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Port {
     private static final int POOL_SIZE = 5;
-    private Queue<Dock> listDocks = new LinkedList<>();
-    private Semaphore semaphore = new Semaphore(POOL_SIZE);
+    private final Queue<Dock> listDocks = new LinkedList<>();
+    private final Semaphore semaphore = new Semaphore(POOL_SIZE);
     private static final Lock instanceLock = new ReentrantLock();
     private static final Lock collectionLock = new ReentrantLock();
 
@@ -43,7 +43,7 @@ public class Port {
         try {
             semaphore.acquire();
         } catch (InterruptedException e) {
-            throw new ShipThreadException("While getting a dock exception occured", e.getCause());
+            throw new ShipThreadException("While getting a dock exception occurred", e.getCause());
         }
         collectionLock.lock();
         try {

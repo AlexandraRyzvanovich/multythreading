@@ -13,16 +13,14 @@ import java.util.Collection;
 import java.util.List;
 
 public class ShipCreator {
-    public List<Ship> ships = new ArrayList<>();
+    public final List<Ship> ships = new ArrayList<>();
 
     public List<Ship> create(String filePath) throws CreatorException {
         try {
             Gson gson = new Gson();
             Type shipType = new TypeToken<Collection<Ship>>() {}.getType();
             Collection<Ship> shipsArray = gson.fromJson(new FileReader(filePath), shipType);
-            for (Ship ship : shipsArray) {
-                ships.add(ship);
-            }
+            ships.addAll(shipsArray);
         } catch (FileNotFoundException e) {
             throw new CreatorException("File path not found", e.getCause());
         }

@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class DockCreator {
-    public List<Dock> docks = new ArrayList<>();
+    public final List<Dock> docks = new ArrayList<>();
 
     public List<Dock> create(String filePath) throws CreatorException {
         try {

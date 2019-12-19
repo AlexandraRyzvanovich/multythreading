@@ -14,6 +14,7 @@ public class Ship implements Runnable{
 
     public Ship(String shipName, boolean isLoaded) {
         this.shipName = shipName;
+        this.isLoaded = isLoaded;
     }
 
     public String getShipName() {
