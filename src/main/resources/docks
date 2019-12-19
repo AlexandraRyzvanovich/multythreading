@@ -6,12 +6,12 @@
   },
   {
     "id": "2",
-    "isLoaded": false,
+    "isLoaded": true,
     "capacity": 20
   },
   {
     "id": "3",
-    "isLoaded": false,
+    "isLoaded": true,
     "capacity": 20
   },
   {

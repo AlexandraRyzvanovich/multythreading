@@ -15,21 +15,23 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Director {
     private static final String SHIPS_JSON_FILE_PATH = "src/main/resources/ships";
+    private static final String DOCKS_JSON_FILE_PATH = "src/main/resources/docks";
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         ShipsCreator creator = new ShipsCreator();
         DockCreator dockCreator = new DockCreator();
         List<Ship> shipsQueue =  creator.create(SHIPS_JSON_FILE_PATH);
         AtomicReference<Port> port = Port.getInstance();
-        List<Dock> list = dockCreator.create("src/main/resources/docks");
-        port.get().addDocks(list);
+        List<Dock> listDocks = dockCreator.create(DOCKS_JSON_FILE_PATH);
+        port.get().addDocks(listDocks);
 
-        int shipsQuantity = shipsQueue.size();
-        ExecutorService executorService = Executors.newFixedThreadPool(shipsQuantity);
-        for(int i = 0; i < shipsQuantity; i++) {
+        int dockQuantity = listDocks.size();
+        ExecutorService executorService = Executors.newFixedThreadPool(dockQuantity);
+        for(int i = 0; i < shipsQueue.size() ; i++) {
             executorService.submit(shipsQueue.get(i));
         }
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
         executorService.shutdown();
+        executorService.awaitTermination(10, TimeUnit.SECONDS);
+        System.out.println("Zaebok");
     }
 }

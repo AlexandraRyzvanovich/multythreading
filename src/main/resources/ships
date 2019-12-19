@@ -18,5 +18,13 @@
   {
     "shipName": "Ship5",
     "isLoaded": true
+  },
+  {
+    "shipName": "Ship6",
+    "isLoaded": false
+  },
+  {
+    "shipName": "Ship7",
+    "isLoaded": true
   }
 ]

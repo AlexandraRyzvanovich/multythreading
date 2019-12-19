@@ -1,5 +1,7 @@
 package com.epam.entity;
 
+import com.epam.exception.ShipThreadException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -9,9 +11,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Port {
-    private static final int POOL_SIZE = 10;
-    private Semaphore semaphore = new Semaphore(POOL_SIZE);
+    private static final int POOL_SIZE = 5;
     private Queue<Dock> listDocks = new LinkedList<>();
+    private Semaphore semaphore = new Semaphore(POOL_SIZE);
     private static final Lock instanceLock = new ReentrantLock();
     private static final Lock collectionLock = new ReentrantLock();
 
@@ -24,12 +26,12 @@ public class Port {
         if (port == null) {
             instanceLock.tryLock();
             AtomicReference<Port> temp;
-            try{
-                if(port == null){
+            try {
+                if (port == null) {
                     temp = new AtomicReference<>(new Port());
                     port = temp;
                 }
-            }finally {
+            } finally {
                 instanceLock.unlock();
             }
         }
@@ -37,23 +39,31 @@ public class Port {
     }
 
     public Dock getDock() {
-        Dock dock = null;
-        try{
-            semaphore.acquire();
-            collectionLock.lock();
-            try {
-                dock = listDocks.poll();
-            }finally {
-                collectionLock.unlock();
-            }
-        }catch (InterruptedException e) {
+        Dock dock;
+        semaphore.tryAcquire();
+        collectionLock.lock();
+        try {
+            dock = listDocks.poll();
+        } finally {
+            collectionLock.unlock();
             semaphore.release();
-           // throw new CallInactiveThreadException("Thread operation error, cause ",e);
         }
+
+
         return dock;
     }
 
-    public void addDocks(List<Dock> docks){
+    public void returnDock(Dock dock) {
+        collectionLock.lock();
+        try {
+            this.listDocks.add(dock);
+        } finally {
+            collectionLock.unlock();
+            semaphore.release();
+        }
+    }
+
+    public void addDocks(List<Dock> docks) {
         listDocks.addAll(docks);
     }
 }

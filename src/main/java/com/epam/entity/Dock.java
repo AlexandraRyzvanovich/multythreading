@@ -1,17 +1,14 @@
 package com.epam.entity;
 
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Dock {
+    private static final Logger LOGGER = LogManager.getLogger();
     private int id;
     private boolean loaded;
     private int capacity;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public boolean isLoaded() {
         return loaded;
@@ -21,7 +18,7 @@ public class Dock {
         this.loaded = loaded;
     }
 
-    public int isCapacity() {
+    public int setCapacity() {
         return capacity;
     }
 
@@ -32,14 +29,14 @@ public class Dock {
     public void unloadShip(Ship ship){
             this.loaded = true;
             ship.setLoaded(false);
-            System.out.println(ship.getShipName() + "was unloaded");
+            LOGGER.info(ship.getShipName() + " was unloaded");
 
     }
 
     public void loadShip(Ship ship){
             this.loaded = false;
             ship.setLoaded(true);
-            System.out.println(ship.getShipName() + "was loaded");
+            LOGGER.info(ship.getShipName() + " was loaded");
 
     }
 }
