@@ -1,7 +1,5 @@
 package com.epam.entity;
 
-import com.epam.exception.ShipThreadException;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -48,8 +46,6 @@ public class Port {
             collectionLock.unlock();
             semaphore.release();
         }
-
-
         return dock;
     }
 

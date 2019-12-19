@@ -7,20 +7,16 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Ship implements Runnable{
     private static final Logger LOGGER = LogManager.getLogger();
-    private String shipName;
+    private final String shipName;
     private boolean isLoaded;
     private boolean isProcessed;
 
-    public String getShipName() {
-        return shipName;
-    }
-
-    public void setShipName(String shipName) {
+    public Ship(String shipName, boolean isLoaded) {
         this.shipName = shipName;
     }
 
-    public boolean isLoaded() {
-        return isLoaded;
+    public String getShipName() {
+        return shipName;
     }
 
     public void setLoaded(boolean loaded) {
@@ -35,11 +31,11 @@ public class Ship implements Runnable{
             try {
                 dock = port.get().getDock();
                 LOGGER.info("Trying to process " + this.shipName);
-                if (this.isLoaded() && !dock.isLoaded()) {
+                if (this.isLoaded && !dock.isLoaded()) {
                     dock.unloadShip(this);
                     isProcessed = true;
                     LOGGER.info("ship " + this.shipName + " is processed");
-                } else if (!this.isLoaded() && dock.isLoaded()) {
+                } else if (!this.isLoaded && dock.isLoaded()) {
                     dock.loadShip(this);
                     isProcessed = true;
                     LOGGER.info("ship " + this.shipName + " is processed");
